@@ -3,7 +3,9 @@ https://react.dev/learn/start-a-new-react-project
 npx create-next-app frontend_hh.kz
 npm run dev
 http://localhost:3000/
----l2
+---l3(react)
+http://localhost:3000/login
+http://localhost:3000/profile
 
 
 git add .
@@ -13,5 +15,12 @@ git remote add origin https://github.com/ivannikovmn/20230814b-Decode-frontend-I
 git push origin main
 ---
 git add .
-git commit -m "add RestAPI l-1 (auth/user)"
+git commit -m "add RestAPI l-2 (auth/user)"
+git push origin main
+---
+git commit --amend -m "add React l-2 (auth/user)"
+git push --force origin main
+---
+git add .
+git commit -m "fix React l-2 (header), add React l-3 (login, posts)" 
 git push origin main
