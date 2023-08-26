@@ -25,6 +25,6 @@ export default function Test(){
         <p>Counter: {counter} </p>
 
         <button onClick={minusFunc}>Minus</button>
-        <button onClick={plusFunc}>Plus</button>        
+        <button onClick={plusFunc}>Plus</button>
     </div>)
 }

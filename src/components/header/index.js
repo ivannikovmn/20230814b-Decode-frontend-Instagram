@@ -4,7 +4,9 @@
 import searchIcon from '../../app/images/search.svg'
 import newPostsIcon from '../../app/images/newposts.svg'
 import storiesIcon from '../../app/images/stories.svg'
+import avatar from '../../app/images/avatar.png'
 import Image from 'next/image'
+import Link from 'next/link'
 export default function Header () {
     return (
         <header className="header">
@@ -21,21 +23,23 @@ export default function Header () {
                     </div>                    
                     <div>
                         {/* Если нет входа в систему*/}
-                        {/* <button className="button button-primary">
+                        <button className="button button-primary" href="#">
                             Войти
                         </button>    
-                        <button className="header-auth">
+                        <Link className="header-auth" href="/login">
                             Зарегистрироваться
-                        </button>     */}
+                        </Link>    
 
                         {/* Если есть вход в систему*/} 
-                        <a href="#" className="header-post">
+                        <Link className="header-button" href="/create-post" >
                                 <Image src={newPostsIcon} />
-                        </a> 
-                        <a href="#" className="header-story">
+                        </Link>                         
+                        <Link className="header-button" href="#" >
                                 <Image src={storiesIcon} />
-                        </a>                         
-
+                        </Link>    
+                        <Link className="header-button"  href="/profile">
+                                <Image src={avatar} />
+                        </Link>                                                                                                              
                     </div>
                 </div>
             </div>
