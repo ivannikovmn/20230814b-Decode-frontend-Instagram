@@ -34,3 +34,7 @@ git push origin main
 git add .
 git commit -m "add React l-5 (modal window Post)" 
 git push origin main
+---
+git add .
+git commit -m "add React l-6 p1 (AutoCompliteTags)" 
+git push origin main
