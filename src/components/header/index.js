@@ -1,5 +1,5 @@
 'use client'
-
+import { useSelector, useDispatch } from 'react-redux'
 // import logo from '../../app/images/logo.svg'
 import { useEffect, useState } from 'react';
 import searchIcon from '../../app/images/search.svg'
@@ -8,15 +8,18 @@ import storiesIcon from '../../app/images/stories.svg'
 import avatar from '../../app/images/avatar.png'
 import Image from 'next/image'
 import Link from 'next/link'
+import { logOut } from '@/app/store/slices/authSlice'
 
 // import ModalAddPos from '@/components/ModalAddPos'
 export default function Header () {
+    const dispatch = useDispatch()
     // const [ModalPosIsOpen, setmodalPosIsOpen] = useState(false)
 
     // const closeModalPos = () => {
     //     setmodalPosIsOpen(false)
     //   }  
-          
+    
+    const isAuth = useSelector((state) => state.auth.isAuth)
     return (
         <header className="header">
             <div className="container">
@@ -32,12 +35,15 @@ export default function Header () {
                     </div>                    
                     <div>
                         {/* Если нет входа в систему*/}
-                        <button className="button button-primary" href="#">
+                        {!isAuth && <Link className="button button-primary" href="/login">
                             Войти
-                        </button>    
-                        <Link className="header-auth" href="/login">
+                        </Link>}  
+                        {isAuth && <a className="button button-primary" onClick={() => dispatch(logOut())}>
+                            Выйти
+                        </a>}                           
+                        <button className="header-auth" href="#">
                             Зарегистрироваться
-                        </Link>    
+                        </button>    
 
                         {/* Если есть вход в систему*/} 
                         {/* <Link className="header-button" href="/create-post" >
