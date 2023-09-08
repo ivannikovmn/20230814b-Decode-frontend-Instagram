@@ -1,5 +1,5 @@
 'use client'
-import Header from '@/components/header'
+// import Header from '@/components/header'
 import {useEffect, useState} from "react"
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
@@ -49,7 +49,7 @@ export default function UserLogin () {
              
             {isAuth ? "True" : "False"}
             <div>
-            <Header/>
+            {/* <Header/> */}
                 <Image src={smartPhones} />
             </div>
             <div className="login-page">

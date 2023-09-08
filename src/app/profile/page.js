@@ -4,8 +4,12 @@ import Header from '@/components/header'
 import { useEffect, useState } from 'react';
 import MyPosts from '@/components/myposts'
 import postsIcon from '../../app/images/posts.svg'
+import newPostsIcon from '../../app/images/newposts.svg'
+import storiesIcon from '../../app/images/stories.svg'
 import Image from 'next/image'
-import Post from '@/components/Post';
+// Post_ это то чно отображается post_
+import Post_ from '@/components/Post';
+import Link from 'next/link'
 
 import ModalAddPos from '@/components/ModalAddPos'
 export default function PostPage() {
@@ -17,15 +21,18 @@ export default function PostPage() {
 
   const [posts, setPosts] = useState([])
 
-  // const posts = [{
-  //   post: <img src="/images/Small-Post1.png" />
-  // }, 
-  // {
-  //   post: <img src="/images/Small-Post2.png" />
-  // }, 
-  // {
-  //   post: <img src="/images/Small-Post3.png" />
-  // }]
+  const posts_ = [{
+    post: <img src="/images/Small-Post1.png" />
+  }, 
+  {
+    post: <img src="/images/Small-Post2.png" />
+  }, 
+  {
+    post: <img src="/images/Small-Post3.png" />
+  },
+  {
+    post: <img src="/images/Small-Post4.jpg" />
+  }]
 
   const addPost = (item) => {
     setPosts([...posts, item])
@@ -47,16 +54,22 @@ export default function PostPage() {
          <div className='ptb7'>
 
          {ModalPosIsOpen && <ModalAddPos close={closeModalPos} addPost={addPost}/>}
-          <div className='pos'>
-            {/* {posts.map(item => (<p>{item.about}</p>))}*/}
-            {posts.map(item => (<Post post={item} remove={removePost}/>))}
-            <button className='button button-primary-bordered' onClick={() => setmodalPosIsOpen(true)}>Добавить пост</button>
-          </div>
-
+          <div className='pos'>                                  
+            {/* <fix cтили в файле header.css> */}
+            <a className="header-button">
+                    <Image src={storiesIcon} />
+            </a>             
+            <a className="header-button" onClick={() => setmodalPosIsOpen(true)} >
+                    <Image src={newPostsIcon} />
+            </a>              
+            {/* </fix cтили в файле header.css> */} 
+            <br/><br/>   
             Публикации 
-            <Image src={postsIcon} />
+            <Image src={postsIcon} /> 
+            {posts.map(item => (<Post_ post={item} remove={removePost}/>))}         
+          </div>
          </div>
-         {/* <MyPosts posts={posts}/> */}
+         <MyPosts posts={posts_}/>
       </div>
     </main>
   )

@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux'
 // import logo from '../../app/images/logo.svg'
 import { useEffect, useState } from 'react';
 import searchIcon from '../../app/images/search.svg'
-import newPostsIcon from '../../app/images/newposts.svg'
-import storiesIcon from '../../app/images/stories.svg'
 import avatar from '../../app/images/avatar.png'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -38,26 +36,20 @@ export default function Header () {
                         {!isAuth && <Link className="button button-primary" href="/login">
                             Войти
                         </Link>}  
+                        {!isAuth && <button className="header-auth" href="#">
+                            Зарегистрироваться
+                        </button>}                         
                         {isAuth && <a className="button button-primary" onClick={() => dispatch(logOut())}>
                             Выйти
                         </a>}                           
-                        <button className="header-auth" href="#">
-                            Зарегистрироваться
-                        </button>    
+  
 
                         {/* Если есть вход в систему*/} 
                         {/* <Link className="header-button" href="/create-post" >
                                 <Image src={newPostsIcon} />
                         </Link>              */}
                         {/* {ModalPosIsOpen && <ModalAddPos close={closeModalPos} addPost={addPost}/>}  */}
-                        {/* <button className='button button-primary-bordered' onClick={() => setmodalPosIsOpen(true)}>Добавить пост</button>*/}                        
-                        <a className="header-button" onClick={() => setmodalPosIsOpen(true)} >
-                                <Image src={newPostsIcon} />
-                        </a>  
-
-                        <Link className="header-button" href="#" >
-                                <Image src={storiesIcon} />
-                        </Link>    
+                        {/* <button className='button button-primary-bordered' onClick={() => setmodalPosIsOpen(true)}>Добавить пост</button>*/}                          
                         <Link className="header-button"  href="/profile">
                                 <Image src={avatar} />
                         </Link>                                                                                                              

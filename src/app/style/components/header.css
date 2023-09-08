@@ -57,6 +57,8 @@
 
 .header-button{
     padding: 5px;
+    float: right;
+    cursor: pointer;
 }
 
 .header-button:hover {
