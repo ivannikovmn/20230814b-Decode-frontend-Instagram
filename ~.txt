@@ -5,7 +5,7 @@ npm run dev
 http://localhost:3000/
 ---l3(react)
 http://localhost:3000/login
-http://localhost:3000/profile
+http://localhost:3000/profile > http://localhost:3000/posts
 ---l4
 npm i axios
 ---l8
@@ -52,8 +52,13 @@ git commit -m "add React l-8 (auth header)"
 git push origin main
 ---
 git add .
-git commit -m "fix js /login /header /page (view)"
+git commit -m "fix view (js: login, header, page)"
 git push origin main
+---
+git add .
+git commit -m "add React l-9 (p1 fix img alt), bad code (p2 view myPosts)"
+git push origin main
+
 
 
 ---l1

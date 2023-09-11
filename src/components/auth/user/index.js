@@ -38,7 +38,7 @@ export default function UserLogin () {
     }, [step])    
 
     useEffect(() => {
-        if(isAuth)  router.push("/profile")
+        if(isAuth)  router.push("/posts")
     }, [isAuth])    
 
     const min = parseInt(time / 60)
@@ -50,7 +50,7 @@ export default function UserLogin () {
             {isAuth ? "True" : "False"}
             <div>
             {/* <Header/> */}
-                <Image src={smartPhones} />
+                <Image src={smartPhones} alt="icon"/>
             </div>
             <div className="login-page">
                 <img src="/images/logo.svg" />
