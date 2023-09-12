@@ -18,11 +18,7 @@ import ModalAddPos from '@/components/ModalAddPos'
 export default function PostPage() {
 
   const dispatch = useDispatch();
-<<<<<<< HEAD
   const posts_ = useSelector((state) => state.post.posts)
-=======
-  const posts_ = useSelector((state) => state.post.posts_)
->>>>>>> 75dbec90a1b66f55fc1e47de2e19358af845e802
   console.log("here", posts_);
   const didMount = () => {
     dispatch(getMyPosts())
