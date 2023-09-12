@@ -4,14 +4,21 @@ import axios from 'axios';
 import { useEffect, useState  } from 'react';
 import AutoCompliteSelect from '@/components/AutoCompliteSelect'
 import AutoCompliteTags from '../AutoCompliteTags';
+import { useRouter } from 'next/navigation';
+import { useDispatch } from 'react-redux';
+import { createPost } from '@/app/store/slices/postSlice';
 
 export default function ModalAddPos( {close, addPost} ) {
+  const router = useRouter()
+  const dispatch = useDispatch()
+
   const [post, setPost] = useState("")
   const [about, setAbout] = useState("")
-  const [participants, setParticipants] = useState("")  
-  
+  const [allParticipants, setParticipants] = useState([])  
+  const [cities, setCities] = useState([])
+  const [participants, setSelectedParticipants] = useState("")
+  const [cityId, setCitiy] = useState()  
 
-    const [cities, setCities] = useState([])
     useEffect(() => {
       console.log("didMount");
 
@@ -38,9 +45,15 @@ export default function ModalAddPos( {close, addPost} ) {
       })     
     }, [])
   
-    console.log("rerender")
+    console.log("rerender",{
+      post,
+      about,
+      participants,
+      cities
+    })
     const onSelect =(data) => {
-      console.log('onSelect', data);
+      // console.log('onSelect', data);
+      // setCity(res.data)
     }
 
     const onChangePost = (e) => {
@@ -53,17 +66,33 @@ export default function ModalAddPos( {close, addPost} ) {
       setAbout(e.target.value)
     }     
 
+    const  onParticipantsChange =(data) => {
+      // console.log(data);
+      const arr = data.map(item => item.name)
+      setSelectedParticipants(arr.join(","))
+    }  
+    
     const save = () => {
-      const post = {
-        // post,     
+      const posts = {
+        post,     
         // story,
         about
         // "participants": "_mikhail_ivannikov",
         // "cityId": "31"
       }
-      console.log(post);
-      addPost(post)
+      console.log(posts);
+      addPost(posts)
     }
+
+    const handleSave = () => {
+      dispatch(createPost(    {
+        post,
+        about,  
+        participants: "_kz_al",   
+        cityId: "31"
+      }, router))
+  
+    }    
 
     return(
         <div className="modal">
@@ -73,15 +102,15 @@ export default function ModalAddPos( {close, addPost} ) {
                 <div className="modal-actions">
                     <button className="button button-primary-bordered" onClick={close}>Отменить</button>
                     <h4>Создание публикации</h4>
-                    <button className="button button-primary" onClick={save}>Поделиться</button>
+                    <button className="button button-primary" onClick={() => { handleSave(); save(); }}>Поделиться</button>                                        
                 </div>
 
-                <Input placeholder="Фото/видео..." type="text" label="Добавить фото/видео" size="fieldset-lg" onChange={onChangePost} value={post}/>
+                <Input placeholder="Фото/видео..." type="text" label="Добавить фото/видео" size="fieldset-lg" onChange={onChangePost} value={post}/>                
                 <textarea className="textarea" placeholder="Добавьте подпись..." type="text" onChange={onChangeAbo}>{about}</textarea>
-                <AutoCompliteSelect placeholder="Место.." type="text" label="Добавить место" size="fieldset-lg" items={cities} onSelect={onSelect}/>  
-                {/* AutoCompliteSelec как даты  onChange и value, чтобы прийти к cityId*/}
-
-                <AutoCompliteTags  placeholder="Аккаунты..." type="text" label="Отметить аккаунты" size="fieldset-lg" items={participants} onSelect={onSelect}/> 
+                <AutoCompliteSelect placeholder="Место.." type="text" label="Добавить место" size="fieldset-lg" items={cities} onSelect={(data) => setCitiy(data.id)}/>                              
+                <AutoCompliteTags  placeholder="Аккаунты..." type="text" label="Отметить аккаунты" size="fieldset-lg" items={allParticipants} onSelect={onParticipantsChange}/> 
+                
+                
             </div>
 
         </div>           

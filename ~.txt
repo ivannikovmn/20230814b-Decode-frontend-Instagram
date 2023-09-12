@@ -58,6 +58,10 @@ git push origin main
 git add .
 git commit -m "add React l-9 (p1 fix img alt) (p2 view myPosts, fix index.js [mypost, myposts], key)"
 git push origin main
+---
+git add .
+git commit -m "add React l-9 (p3-p4 create post), fix view post"
+
 
 ---l1
 1. Создайте новый проект insta_frontend + 

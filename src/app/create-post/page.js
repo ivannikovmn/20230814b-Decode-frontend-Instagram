@@ -23,7 +23,7 @@ export default function CreatePost() {
   return (
     <main>
       <Header />
-      <div className='container pt7'>
+      <div className='container p7'>
         <h1>Создание публикации</h1>
         <Input placeholder="" type="text" label="Добавить фото и видео" size="fieldset-md"/>
         <Input placeholder="" type="text" label="Добавить подпись" size="fieldset-md"/>

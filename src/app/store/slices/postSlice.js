@@ -11,12 +11,15 @@ export const postSlice = createSlice({
   reducers: {
     setMyPosts: (state, action) => {
         state.posts = action.payload.posts
-    }
-  },
-}) 
+      },
+      uppendPost: (state, action) => {
+        state.posts = [...state.posts, action.payload.newpost]
+      }
+    },
+  })
 
 // Action creators are generated for each case reducer function
-export const { setMyPosts } = postSlice.actions
+export const { setMyPosts, uppendPost } = postSlice.actions
 
 export const getMyPosts = () => async (dispatch) => {
 
@@ -30,5 +33,11 @@ export const getMyPosts = () => async (dispatch) => {
   
 }
 
+export const createPost = (sendData, router) => async (dispatch) => {  
+  const res = await axios.post(`${END_POINT}/api/posts`, sendData);
+  router.push("/posts")
+  // console.log(res.data);
+  dispatch(uppendPost({newpost: res.data}))  
+}
 
 export default postSlice.reducer

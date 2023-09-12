@@ -19,7 +19,7 @@ export default function PostPage() {
 
   const dispatch = useDispatch();
   const posts_ = useSelector((state) => state.post.posts)
-  console.log("here", posts_);
+  // console.log("here", posts_);
   const didMount = () => {
     dispatch(getMyPosts())
   }
@@ -74,6 +74,7 @@ export default function PostPage() {
             <a className="header-button" onClick={() => setmodalPosIsOpen(true)} >
                     <Image src={newPostsIcon} alt="icon" />
             </a>              
+            {/* <Link className="button button-primary" href="/create-post">Создать пост</Link> */}
             {/* </fix cтили в файле header.css> */} 
             <br/><br/>   
             Публикации 
