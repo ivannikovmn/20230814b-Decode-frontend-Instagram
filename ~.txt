@@ -5,7 +5,7 @@ npm run dev
 http://localhost:3000/
 ---l3(react)
 http://localhost:3000/login
-http://localhost:3000/profile
+http://localhost:3000/profile > http://localhost:3000/posts
 ---l4
 npm i axios
 ---l8
@@ -52,9 +52,12 @@ git commit -m "add React l-8 (auth header)"
 git push origin main
 ---
 git add .
-git commit -m "fix js /login /header /page (view)"
+git commit -m "fix view (js: login, header, page)"
 git push origin main
-
+---
+git add .
+git commit -m "add React l-9 (p1 fix img alt) (p2 view myPosts, fix index.js [mypost, myposts], key)"
+git push origin main
 
 ---l1
 1. Создайте новый проект insta_frontend + 
@@ -85,6 +88,6 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 1. Свяжите логику регистрации с Back-end +
 2. Свяжите логику авторизации с Back-end +
 ---l9
-1. Реализовать функционал выхода из системы 
-2. На странице профиле сделать отображение своих постов с бэка.
+1. Реализовать функционал выхода из системы +
+2. На странице профиле сделать отображение своих постов с бэка.+
 3. Реализовать функционал добавления постов.

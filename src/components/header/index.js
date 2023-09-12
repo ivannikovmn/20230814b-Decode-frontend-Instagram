@@ -27,7 +27,7 @@ export default function Header () {
                     </div>
                     <div>
                          <button className="header-search">
-                                <Image src={searchIcon} />
+                                <Image src={searchIcon}  alt="icon"/>
                             Поиск
                         </button> 
                     </div>                    
@@ -50,8 +50,8 @@ export default function Header () {
                         </Link>              */}
                         {/* {ModalPosIsOpen && <ModalAddPos close={closeModalPos} addPost={addPost}/>}  */}
                         {/* <button className='button button-primary-bordered' onClick={() => setmodalPosIsOpen(true)}>Добавить пост</button>*/}                          
-                        <Link className="header-button"  href="/profile">
-                                <Image src={avatar} />
+                        <Link className="header-button"  href="/posts">
+                                <Image src={avatar}  alt="icon"/>
                         </Link>                                                                                                              
                     </div>
                 </div>

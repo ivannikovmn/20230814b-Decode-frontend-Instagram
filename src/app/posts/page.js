@@ -11,8 +11,20 @@ import Image from 'next/image'
 import Post_ from '@/components/Post';
 import Link from 'next/link'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { getMyPosts } from '@/app/store/slices/postSlice';
+
 import ModalAddPos from '@/components/ModalAddPos'
 export default function PostPage() {
+
+  const dispatch = useDispatch();
+  const posts_ = useSelector((state) => state.post.posts)
+  console.log("here", posts_);
+  const didMount = () => {
+    dispatch(getMyPosts())
+  }
+  useEffect(didMount, [])
+
   const [ModalPosIsOpen, setmodalPosIsOpen] = useState(false)
 
   const closeModalPos = () => {
@@ -21,18 +33,18 @@ export default function PostPage() {
 
   const [posts, setPosts] = useState([])
 
-  const posts_ = [{
-    post: <img src="/images/Small-Post1.png" />
-  }, 
-  {
-    post: <img src="/images/Small-Post2.png" />
-  }, 
-  {
-    post: <img src="/images/Small-Post3.png" />
-  },
-  {
-    post: <img src="/images/Small-Post4.jpg" />
-  }]
+  // const posts_ = [{
+  //   post: <img src="/images/Small-Post1.png" />
+  // }, 
+  // {
+  //   post: <img src="/images/Small-Post2.png" />
+  // }, 
+  // {
+  //   post: <img src="/images/Small-Post3.png" />
+  // },
+  // {
+  //   post: <img src="/images/Small-Post4.jpg" />
+  // }]
 
   const addPost = (item) => {
     setPosts([...posts, item])
@@ -57,15 +69,15 @@ export default function PostPage() {
           <div className='pos'>                                  
             {/* <fix cтили в файле header.css> */}
             <a className="header-button">
-                    <Image src={storiesIcon} />
+                    <Image src={storiesIcon} alt="icon"/>
             </a>             
             <a className="header-button" onClick={() => setmodalPosIsOpen(true)} >
-                    <Image src={newPostsIcon} />
+                    <Image src={newPostsIcon} alt="icon" />
             </a>              
             {/* </fix cтили в файле header.css> */} 
             <br/><br/>   
             Публикации 
-            <Image src={postsIcon} /> 
+            <Image src={postsIcon} alt="icon" /> 
             {posts.map(item => (<Post_ post={item} remove={removePost}/>))}         
           </div>
          </div>
