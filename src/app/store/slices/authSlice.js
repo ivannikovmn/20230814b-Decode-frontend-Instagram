@@ -26,7 +26,7 @@ if(token) {
       },
       tokenExt: decodeToken.exp   
     }
-    console.log(initialState);
+    console.log('initialState', initialState);
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
   } else {
     localStorage.removeItem("token")   

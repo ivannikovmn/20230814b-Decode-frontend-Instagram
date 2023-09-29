@@ -32,6 +32,20 @@ export default function Header () {
                         </button> 
                     </div>                    
                     <div>
+                        
+  
+
+                        {/* Если есть вход в систему*/} 
+                        {/* <Link className="header-button" href="/create-post" >
+                                <Image src={newPostsIcon} />
+                        </Link>              */}
+                        {/* {ModalPosIsOpen && <ModalAddPos close={closeModalPos} addPost={addPost}/>}  */}
+                        {/* <button className='button button-primary-bordered' onClick={() => setmodalPosIsOpen(true)}>Добавить пост</button>*/}                          
+                        {/* <Link className="header-button"  href="/posts"> */}
+                        <Link className="header-button"  href="/user-profile">
+                                <Image src={avatar}  alt="icon"/>
+                        </Link>       
+
                         {/* Если нет входа в систему*/}
                         {!isAuth && <Link className="button button-primary" href="/login">
                             Войти
@@ -41,18 +55,7 @@ export default function Header () {
                         </button>}                         
                         {isAuth && <a className="button button-primary" onClick={() => dispatch(logOut())}>
                             Выйти
-                        </a>}                           
-  
-
-                        {/* Если есть вход в систему*/} 
-                        {/* <Link className="header-button" href="/create-post" >
-                                <Image src={newPostsIcon} />
-                        </Link>              */}
-                        {/* {ModalPosIsOpen && <ModalAddPos close={closeModalPos} addPost={addPost}/>}  */}
-                        {/* <button className='button button-primary-bordered' onClick={() => setmodalPosIsOpen(true)}>Добавить пост</button>*/}                          
-                        <Link className="header-button"  href="/posts">
-                                <Image src={avatar}  alt="icon"/>
-                        </Link>                                                                                                              
+                        </a>}  
                     </div>
                 </div>
             </div>

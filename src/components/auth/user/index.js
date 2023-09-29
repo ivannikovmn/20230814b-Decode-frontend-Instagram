@@ -38,7 +38,8 @@ export default function UserLogin () {
     }, [step])    
 
     useEffect(() => {
-        if(isAuth)  router.push("/posts")
+        // if(isAuth)  router.push("/posts")
+        if(isAuth)  router.push("/user-profile")
     }, [isAuth])    
 
     const min = parseInt(time / 60)

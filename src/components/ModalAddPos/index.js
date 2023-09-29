@@ -7,6 +7,7 @@ import AutoCompliteTags from '../AutoCompliteTags';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { createPost } from '@/app/store/slices/postSlice';
+// import { createPost } from '@/app/store/slices/userProfileSlice';
 
 export default function ModalAddPos( {close, addPost} ) {
   const router = useRouter()
