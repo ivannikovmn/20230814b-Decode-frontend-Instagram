@@ -12,6 +12,7 @@ import Image from 'next/image'
 import Post_ from '@/components/Post';
 import Link from 'next/link'
 import ModalSelectFollowers from '@/components/ModalSelectFollowers'
+import ModalViewPost from '@/components/ModalViewPost';
 
 import { useDispatch, useSelector } from 'react-redux'
 // import { getMyPosts } from '@/app/store/slices/postSlice';
@@ -19,6 +20,7 @@ import { getFollowers, getMyPosts } from '@/app/store/slices/postSlice';
 // import { getFollowers, getMyPosts } from '@/app/store/slices/userProfileSlice';
 
 import ModalAddPos from '@/components/ModalAddPos'
+import ModalViewStory from '@/components/ModalViewStory';
 export default function PostPage() {
   const [followerUser, setFollowerUser] = useState()
   const [isFolModalOpen, setFolModalOpen] = useState(false)
@@ -35,6 +37,14 @@ export default function PostPage() {
     setFolModalOpen(false)        
   }
 
+  const closeModalStoryView = () => {
+    setModalStoryViewIsOpen(false)
+  }
+
+  const closeModalPostView = () => {
+    setModalPostViewIsOpen(false)
+  }
+
   useEffect(() => {
     dispatch(getFollowers())
     console.log('dispatch(getFollowers())', dispatch(getFollowers()));
@@ -42,6 +52,8 @@ export default function PostPage() {
 
 
   const [ModalPosIsOpen, setmodalPosIsOpen] = useState(false)
+  const [ModalStoryViewIsOpen, setModalStoryViewIsOpen] = useState(false)
+  const [ModalPostViewIsOpen, setModalPostViewIsOpen] = useState(false)
 
   const closeModalPos = () => {
     setmodalPosIsOpen(false)
@@ -93,8 +105,11 @@ export default function PostPage() {
             {/* <Link className="button button-primary" href="/create-post">Создать пост</Link> */}
             {/* </fix cтили в файле header.css> */} 
             <div className='flex'>
-              <div>
-                <Image src={addAvatar} alt="icon" /> 
+              <div>                 
+                {ModalStoryViewIsOpen && <ModalViewStory close={closeModalStoryView}/>}
+                <a style={{cursor:'pointer'}} onClick={()=>setModalStoryViewIsOpen(true)}>
+                  <Image src={addAvatar} alt="icon" />
+                </a> 
               </div>
               <div>
                   <h1>terrylucas</h1>
@@ -110,13 +125,16 @@ export default function PostPage() {
 
             <br/><br/>   
             <h5 style={{borderTop: `1px solid #DBDBDB`}}>                      
-                <Image style={{padding: `10px 5px 0 0 `}} src={postsIcon} alt="icon" /> 
-                ПУБЛИКАЦИИ              
-              {posts.map(item => (<Post_ post={item} remove={removePost}/>))}         
-            </h5>            
+                <Image style={{padding: `10px 5px 0 0 `}} src={postsIcon} alt="icon" />
+                ПУБЛИКАЦИИ
+                {posts.map(item => (<Post_ post={item} remove={removePost}/>))} 
+            </h5>        
           </div>
          </div>
-         <MyPosts posts={posts_}/>
+         {ModalPostViewIsOpen && <ModalViewPost close={closeModalPostView}/>}   
+        <a style={{cursor:'pointer'}} onClick={()=>setModalPostViewIsOpen(true)}>
+          <MyPosts posts={posts_}/>
+        </a>           
       </div>
     </main>
   )

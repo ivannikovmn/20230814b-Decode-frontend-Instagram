@@ -50,7 +50,7 @@ export default function Header () {
                         {!isAuth && <Link className="button button-primary" href="/login">
                             Войти
                         </Link>}  
-                        {!isAuth && <button className="header-auth" href="#">
+                        {!isAuth && <button className="link-blue" href="#">
                             Зарегистрироваться
                         </button>}                         
                         {isAuth && <a className="button button-primary" onClick={() => dispatch(logOut())}>

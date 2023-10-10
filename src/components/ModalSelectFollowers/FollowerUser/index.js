@@ -7,7 +7,7 @@ export default function FollowerUser({FollowerUser}){
                 </div>
                 <div className="flex-cl ">
                     {FollowerUser.followerUserId}
-                    <button className="header-auth">Подписаться</button>
+                    <button className="link-blue">Подписаться</button>
                     <div>Mikhail Ivannikov</div>
                 </div>
                 <div className="p2">
