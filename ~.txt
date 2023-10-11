@@ -70,8 +70,10 @@ git push origin main
 git add .
 git commit -m "add React l-5 (fix header-aut>link-blue, p3-p6 ModalViewPost, ModalViewStory, AddComment near ModalAddExp)" 
 git push origin main
-
-
+---
+git add .
+git commit -m "add React cg (view posts)" 
+git push origin main
 
 ---l1
 1. Создайте новый проект insta_frontend + 
@@ -105,9 +107,9 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 2. На странице профиле сделать отображение своих постов с бэка.+
 3. Реализовать функционал добавления постов.+
 ---l10
-1. Реализовать фукнционал открытия модального окна с данными о посте  
-2. Возможность редактировать пост.
-3. Возможность удалить пост.
+1. Реализовать фукнционал открытия модального окна с данными о посте +
+	2. Возможность редактировать пост.
+	3. Возможность удалить пост.
 ---l11
 1. Страница для отображения всех постов  (или рекомендованных, если есть такой API).
 2. Возможность открыть любой пост и оставить комментарий.

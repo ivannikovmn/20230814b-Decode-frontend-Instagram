@@ -5,8 +5,14 @@ import AddComment from '../AddComment'
 import { useState } from 'react'
 import Comment from '../Comment'
 
-export default function ModalViewPost({ close }) {
+export default function ModalViewPost({ close, selectedPost }) {
+    // Проверяем, есть ли выбранный пост, и устанавливаем соответствующее значение переменной about
+    const about = selectedPost ? selectedPost.about : '';
+    const postImageSrc = selectedPost && selectedPost.post ? selectedPost.post : null;
+
     const [comments, setComments] = useState([])
+
+    // console.log(postImageSrc );
 
     const AddComment_ = (item) => {
         // Добавляем новый комментарий к существующему массиву комментариев
@@ -25,23 +31,31 @@ export default function ModalViewPost({ close }) {
             <div className="modal-backdrop" onClick={close}></div>
             <div className="modal-inner flex">
                 <div>
-                    <img src="/images/Small-Post1.png" />
+                    {/* <img src="/images/Small-Post1.png" /> */}
+                    <img src={postImageSrc} />
                     {/* Аккаунты */}
                 </div>
                 <div>
-                    <div className='flex'>
-                        <div>
+                    <div className='flex flex-js-sb p1'>
+                        <div style={{"width" : "10%"}}>
                             <Link className="header-button" href="/user-profile">
-                                <Image src={avatar} alt="icon" />
+                                <Image src={avatar} alt="icon" />                               
                             </Link>
                         </div>
-                        <div>
+                        <div style={{"width" : "80%"}}>
                             terrylucas <br />
                             Алматы
                         </div>
-                    </div>
+                        <div style={{"width" : "10%"}}>
+                            <Link className="link" href={"/edit"}>...</Link>
+                        </div>
+                        
+                    </div>                    
                     <div className='p1'>
-                        Подпись <br />
+                    {about && (
+                        <p>{about}</p>
+                    )}                                           
+                        {/* Подпись <br /> */}
                         {/* {comments.map(item => (<p key={item.id}>{item.comment}</p>))} */}
                         {comments.map(item => (<Comment comment={item} remove={removeComment}/>))}
                         <AddComment AddComment_={AddComment_} />

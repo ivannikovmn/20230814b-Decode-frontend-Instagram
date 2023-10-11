@@ -55,6 +55,8 @@ export default function PostPage() {
   const [ModalStoryViewIsOpen, setModalStoryViewIsOpen] = useState(false)
   const [ModalPostViewIsOpen, setModalPostViewIsOpen] = useState(false)
 
+  const [selectedPostInfo, setSelectedPostInfo] = useState(null);
+
   const closeModalPos = () => {
     setmodalPosIsOpen(false)
   }  
@@ -85,6 +87,14 @@ export default function PostPage() {
     p.splice(index, 1);
     setPosts(p)
   }
+
+  function handleSelectPost(postInfo) {
+    // Ваш код обработки выбранного поста
+    setSelectedPostInfo(postInfo);
+    setModalPostViewIsOpen(true);
+    // console.log("SelectedPost inside handleSelectPost+:", postInfo);
+  }
+
   return (
     <main>
       <div className='container'>
@@ -131,9 +141,9 @@ export default function PostPage() {
             </h5>        
           </div>
          </div>
-         {ModalPostViewIsOpen && <ModalViewPost close={closeModalPostView}/>}   
+         {ModalPostViewIsOpen && <ModalViewPost close={closeModalPostView} selectedPost={selectedPostInfo}/>}
         <a style={{cursor:'pointer'}} onClick={()=>setModalPostViewIsOpen(true)}>
-          <MyPosts posts={posts_}/>
+          <MyPosts posts={posts_} postInfoCallback={handleSelectPost} />
         </a>           
       </div>
     </main>
