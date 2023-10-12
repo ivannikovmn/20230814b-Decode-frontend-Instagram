@@ -17,7 +17,7 @@ export default function MyPosts ({posts, postInfoCallback }) {
             // post={item?.post ?? 'Позиция не указана'}   
             post={item.post}                 
             // // <для поста в модальном окне (+в mypost index)> 
-            // about={item.about}
+            about={item.about}
             // // createdAt={item?.createdAt ?? 'Дата не указана'}
             // createdAt={item.createdAt} 
             // cityId={item.cityId} 

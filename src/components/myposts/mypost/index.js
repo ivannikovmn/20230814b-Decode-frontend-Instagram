@@ -19,7 +19,7 @@ const handlePostClick = () => {
     <div onClick={handlePostClick}>       
             <img src={post} />
             {/* <для поста в модальном окне (+в Myposts index)> */}
-            <p>{about}</p>
+            {/* <p>{about}</p> */}
             {/*<p>{createdAt}</p>
             <p>{cityId}</p>
             <p>{userId}</p>       */}

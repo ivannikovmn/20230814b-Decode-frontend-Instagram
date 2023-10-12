@@ -31,9 +31,17 @@ https://wiki.crowncloud.net/?How_to_Install_Node_js_on_Ubuntu_23_04
 	nvm --version
 node -v
 npm -v
-git clone https://github.com/ivannikovmn/20230814a-Decode-frontend-Headhunter.git
-cd 20230814a-Decode-frontend-Headhunter/
+git clone https://github.com/ivannikovmn/20230814b-Decode-frontend-Instagram.git
+ls
+cd 20230814b-Decode-frontend-Instagram/
 npm i
+*
+npm run start
+npm run build
+http://206.189.84.19:3001/
+pm2 start npm --name "instagram_front" -- start
+-
+git pull
 
 git add .
 git commit -m "initial"
@@ -96,8 +104,9 @@ git add .
 git commit -m "add React l-14 p1(fix localStorage is not defined), l-16 p1-p2(build, digitalocean) // last version" 
 git push origin main
 ---
-
-
+git add .
+git commit -m "fix view posts" 
+git push origin main
 
 ---l1
 1. Создайте новый проект insta_frontend + 
