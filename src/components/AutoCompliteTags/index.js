@@ -73,7 +73,7 @@ export default function AutoCompliteTags({label, placeholder, type, size, items,
         <div>
             <div className="fieldset-lg">   
                 <div className="tags">
-                    {value.length > 0 && value.map(tag =><div className="tag">
+                    {value.length > 0 && value.map(tag =><div key={tag.id} className="tag">
                         <span>{tag.name}</span> <i onClick={() => deleteTag(tag)}>X</i>
                     </div>)}
                 </div>  
@@ -81,7 +81,7 @@ export default function AutoCompliteTags({label, placeholder, type, size, items,
                     <Input placeholder={placeholder} type={type} onChange={onChange} label={label} size={size}/>
                     {filteredItems.length > 0 && <div className="dropdown dropdown-tags">
                         <h4>Рекомендуемые люди</h4>
-                        {filteredItems.map(item => (<a onClick={() => onClick(item)}>{item.name}</a>))}
+                        {filteredItems.map(item => (<a key={item.id} onClick={() => onClick(item)}>{item.name}</a>))}
                         <a></a>
                     </div>}
                 </div>

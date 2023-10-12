@@ -3,7 +3,6 @@ import axios from 'axios'
 import jwt_decode from "jwt-decode"
 
 import { END_POINT } from '@/config/end-point'
-const token = localStorage.getItem("token")
 
 let initialState = {
   isAuth: false,
@@ -11,27 +10,28 @@ let initialState = {
   tokenExt: 0  
 }
 
-console.log(token);
-if(token) {
-  let decodeToken = jwt_decode(token)
-  if(decodeToken.exp * 1000 > Date.now() ) {
-    initialState = {
-      isAuth: true,
-      currentUser: {
-        id: decodeToken.id,
-        email: decodeToken.email,
-        full_name: decodeToken.full_name,
-        phone: decodeToken.phone,
-        role: decodeToken.role,
-      },
-      tokenExt: decodeToken.exp   
-    }
-    console.log('initialState', initialState);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
-  } else {
-    localStorage.removeItem("token")   
-  }
-}
+// const token = localStorage.getItem("token")
+// // console.log(token);
+// if(token) {
+//   let decodeToken = jwt_decode(token)
+//   if(decodeToken.exp * 1000 > Date.now() ) {
+//     initialState = {
+//       isAuth: true,
+//       currentUser: {
+//         id: decodeToken.id,
+//         email: decodeToken.email,
+//         full_name: decodeToken.full_name,
+//         phone: decodeToken.phone,
+//         role: decodeToken.role,
+//       },
+//       tokenExt: decodeToken.exp   
+//     }
+//     console.log('initialState', initialState);
+//     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+//   } else {
+//     localStorage.removeItem("token")   
+//   }
+// }
 
 export const authSlice = createSlice({
   name: 'auth',

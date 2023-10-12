@@ -16,7 +16,24 @@ https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopl
 https://jwt.io/
 https://www.npmjs.com/package/jwt-decode
 npm i jwt-decode
-
+---l16
+npm run build
+	права администратора для vsc
+npm run start
+	npm update next
+http://localhost:3001
+-
+ssh root@206.189.84.19
+ls
+https://wiki.crowncloud.net/?How_to_Install_Node_js_on_Ubuntu_23_04
+	wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.39.3/install.sh | bash
+	source ~/.profile
+	nvm --version
+node -v
+npm -v
+git clone https://github.com/ivannikovmn/20230814a-Decode-frontend-Headhunter.git
+cd 20230814a-Decode-frontend-Headhunter/
+npm i
 
 git add .
 git commit -m "initial"
@@ -74,6 +91,13 @@ git push origin main
 git add .
 git commit -m "add React cg (view posts)" 
 git push origin main
+---
+git add .
+git commit -m "add React l-14 p1(fix localStorage is not defined), l-16 p1-p2(build, digitalocean) // last version" 
+git push origin main
+---
+
+
 
 ---l1
 1. Создайте новый проект insta_frontend + 

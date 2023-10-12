@@ -1,5 +1,6 @@
 'use client'
 
+import Token from '@/components/token'
 import Header from '@/components/header'
 import { useEffect, useState } from 'react';
 import MyPosts from '@/components/myposts'
@@ -98,6 +99,7 @@ export default function PostPage() {
   return (
     <main>
       <div className='container'>
+         <Token />
          <Header />
 
 
@@ -137,7 +139,7 @@ export default function PostPage() {
             <h5 style={{borderTop: `1px solid #DBDBDB`}}>                      
                 <Image style={{padding: `10px 5px 0 0 `}} src={postsIcon} alt="icon" />
                 ПУБЛИКАЦИИ
-                {posts.map(item => (<Post_ post={item} remove={removePost}/>))} 
+                {posts.map((item, index) => (<Post_ key={index} post={item} remove={removePost}/>))} 
             </h5>        
           </div>
          </div>

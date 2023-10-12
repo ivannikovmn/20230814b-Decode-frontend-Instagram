@@ -48,7 +48,7 @@ export default function UserLogin () {
     return (
         <section className='smartphones-login-page'>
              
-            {isAuth ? "True" : "False"}
+            {/* {isAuth ? "True" : "False"} */}
             <div>
             {/* <Header/> */}
                 <Image src={smartPhones} alt="icon"/>

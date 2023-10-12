@@ -1,4 +1,5 @@
 'use client';
+import Token from '@/components/token'
 import Header from '@/components/header'
 import Input from '@/components/input';
 import { END_POINT } from '@/config/end-point';
@@ -22,6 +23,7 @@ export default function CreatePost() {
   
   return (
     <main>
+      <Token />
       <Header />
       <div className='container p7'>
         <h1>Создание публикации</h1>

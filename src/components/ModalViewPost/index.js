@@ -57,7 +57,7 @@ export default function ModalViewPost({ close, selectedPost }) {
                     )}                                           
                         {/* Подпись <br /> */}
                         {/* {comments.map(item => (<p key={item.id}>{item.comment}</p>))} */}
-                        {comments.map(item => (<Comment comment={item} remove={removeComment}/>))}
+                        {comments.map(item => (<Comment key={item.id} remove={removeComment}/>))}
                         <AddComment AddComment_={AddComment_} />
                     </div>
                 </div>

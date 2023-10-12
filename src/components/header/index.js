@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from 'react-redux'
 // import logo from '../../app/images/logo.svg'
 import { useEffect, useState } from 'react';
 import searchIcon from '../../app/images/search.svg'
-import avatar from '../../app/images/avatar.png'
+// import avatar from '../../app/images/avatar.png'
+import avatar from '@/app/images/avatar.png'
 import Image from 'next/image'
 import Link from 'next/link'
 import { logOut } from '@/app/store/slices/authSlice'
@@ -24,6 +25,7 @@ export default function Header () {
                 <div className="header-inner">
                     <div>
                         <img src="/images/logo.svg" />
+                        {/* <Image src="/images/logo.svg" alt="Логотип" /> */}
                     </div>
                     <div>
                          <button className="header-search">
@@ -43,7 +45,8 @@ export default function Header () {
                         {/* <button className='button button-primary-bordered' onClick={() => setmodalPosIsOpen(true)}>Добавить пост</button>*/}                          
                         {/* <Link className="header-button"  href="/posts"> */}
                         <Link className="header-button"  href="/user-profile">
-                                <Image src={avatar}  alt="icon"/>
+                                {/* <Image src={avatar}  alt="icon"/> */}
+                                <Image src={avatar} alt="Аватар" />
                         </Link>       
 
                         {/* Если нет входа в систему*/}
