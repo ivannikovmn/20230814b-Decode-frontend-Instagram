@@ -42,6 +42,8 @@ http://206.189.84.19:3001/
 pm2 start npm --name "instagram_front" -- start
 -
 git pull
+npm run build
+pm2 restart 1
 
 git add .
 git commit -m "initial"
@@ -106,6 +108,10 @@ git push origin main
 ---
 git add .
 git commit -m "fix view posts" 
+git push origin main
+---
+git add .
+git commit -m "fix сomment" 
 git push origin main
 
 ---l1
