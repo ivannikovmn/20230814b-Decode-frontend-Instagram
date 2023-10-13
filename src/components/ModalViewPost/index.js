@@ -4,9 +4,11 @@ import avatar from '../../app/images/avatar.png'
 import AddComment from '../AddComment'
 import { useState } from 'react'
 import Comment from '../Comment'
+import ModalEditPost from '@/components/ModalEditPost';
 
 export default function ModalViewPost({ close, selectedPost }) {
     // Проверяем, есть ли выбранный пост, и устанавливаем соответствующее значение переменной about
+    const id = selectedPost ? selectedPost.id : '';
     const about = selectedPost ? selectedPost.about : '';
     const postImageSrc = selectedPost && selectedPost.post ? selectedPost.post : null;
 
@@ -26,6 +28,16 @@ export default function ModalViewPost({ close, selectedPost }) {
         setComments(co)
     }
 
+    const [ModalPostEditIsOpen, setModalPostEditIsOpen] = useState(false)
+
+    const closeModalPostEdit = () => {
+        setModalPostEditIsOpen(false)
+      }
+
+      const closeChildModal = () => {
+        close(); 
+    }      
+
     return (
         <div className="modal">
             <div className="modal-backdrop" onClick={close}></div>
@@ -43,12 +55,17 @@ export default function ModalViewPost({ close, selectedPost }) {
                             </Link>
                         </div>
                         <div style={{"width" : "80%"}}>
+                            {/* {id} */}
                             terrylucas <br />
                             Алматы
                         </div>
-                        <div style={{"width" : "10%"}}>
-                            <Link className="link" href={"/edit"}>...</Link>
-                        </div>
+                        <div style={{"width" : "10%"}}>                            
+                        {ModalPostEditIsOpen && (
+                            <ModalEditPost close={closeModalPostEdit} closeParentModal={closeChildModal} selectedPost={selectedPost} />
+                        )}
+                            
+                            <a style={{cursor:'pointer'}} onClick={()=>setModalPostEditIsOpen(true)}>...</a>
+                        </div>                                            
                         
                     </div>                    
                     <div className='p1'>
@@ -58,7 +75,7 @@ export default function ModalViewPost({ close, selectedPost }) {
                         {/* Подпись <br /> */}
                         {/* {comments.map(item => (<p key={item.id}>{item.comment}</p>))} */}
                         {comments.map(item => (<Comment key={item.id} remove={removeComment}/>))}
-                        <AddComment AddComment_={AddComment_} />
+                        <AddComment AddComment_={AddComment_} />                        
                     </div>
                 </div>
             </div>

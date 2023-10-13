@@ -1,13 +1,13 @@
 
 // export default function MyPost ({post, about, onSelectPost, setSelectedPost}) {
-  export default function MyPost ({post, about, onSelectPost}) {  
+  export default function MyPost ({id, post, about, onSelectPost}) {  
 // <для поста в модальном окне (+в Myposts index)>
 // export default function MyPost ({post, about, createdAt, cityId, userId }) {    
 // </для поста в модальном окне (+в Myposts index)>  
 
 const handlePostClick = () => {
   // Вызываем функцию onSelectPost и передаем информацию о выбранном посте
-  onSelectPost({ post, about });
+  onSelectPost({ id, post, about });
   // setSelectedPost({ post, about });
 
   // console.log("Selected post:", post);
@@ -16,7 +16,8 @@ const handlePostClick = () => {
 
 
     return (
-    <div onClick={handlePostClick}>       
+    <div onClick={handlePostClick}>   
+            {/* {id}     */}
             <img src={post} />
             {/* <для поста в модальном окне (+в Myposts index)> */}
             {/* <p>{about}</p> */}

@@ -113,6 +113,10 @@ git push origin main
 git add .
 git commit -m "fix сomment" 
 git push origin main
+---
+git add .
+git commit -m "fix suggestions view, add React l-10 p5(delete post)" 
+git push origin main
 
 ---l1
 1. Создайте новый проект insta_frontend + 
@@ -148,7 +152,7 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 ---l10
 1. Реализовать фукнционал открытия модального окна с данными о посте +
 	2. Возможность редактировать пост.
-	3. Возможность удалить пост.
+3. Возможность удалить пост.+
 ---l11
 1. Страница для отображения всех постов  (или рекомендованных, если есть такой API).
 2. Возможность открыть любой пост и оставить комментарий.
@@ -170,7 +174,7 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 2. Вывод Suggestions For You на странице со списком постов. 
 3. Возможность подписаться под тех кто в списке Suggestions
 ---l16
-1. Загрузить проект на VPS
+1. Загрузить проект на VPS+
 2. Если есть домен связать его с VPS
 3. Настроить Nginx на 80 порт и сделать прокси от домена на нужный порт
 4. Сгенерировать SSL сертификаты с помощью Certbot

@@ -15,6 +15,7 @@ export default function MyPosts ({posts, postInfoCallback }) {
     const showPosts = posts.map(item => 
         (<MyPost 
             // post={item?.post ?? 'Позиция не указана'}   
+            id={item.id}
             post={item.post}                 
             // // <для поста в модальном окне (+в mypost index)> 
             about={item.about}
