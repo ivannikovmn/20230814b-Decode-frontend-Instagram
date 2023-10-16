@@ -3,11 +3,16 @@ import { useDispatch } from 'react-redux'
 import Image from 'next/image'
 import avatar from '../../app/images/avatar.png'
 import { deletePost } from '@/app/store/slices/postSlice';
+import { useEffect, useState } from 'react';
+import { editPost } from '@/app/store/slices/postSlice';
+import { useRouter } from 'next/navigation';
 
 export default function ModalEditPost({ close, selectedPost, closeParentModal }) {
+    const router = useRouter()
     const id = selectedPost ? selectedPost.id : '';
-    const about = selectedPost ? selectedPost.about : '';
+    // const about = selectedPost ? selectedPost.about : '';
     const postImageSrc = selectedPost && selectedPost.post ? selectedPost.post : null;
+    const [about, setAbout] = useState("");
 
     const dispatch = useDispatch()
 
@@ -21,7 +26,21 @@ export default function ModalEditPost({ close, selectedPost, closeParentModal })
             closeParentModal();
         }
     };
-        
+
+    useEffect(() => {
+        if (selectedPost) {
+            setAbout(selectedPost.about);
+        }
+    }, [selectedPost]);
+
+    const handleSave = () => {
+        dispatch(editPost(    {      
+          id,
+          post: postImageSrc,
+          about     
+        }, router))
+      }    
+    
     return(
         <div className="modal">
              <div className="modal-backdrop" onClick={close}></div>
@@ -29,7 +48,7 @@ export default function ModalEditPost({ close, selectedPost, closeParentModal })
                 <div className='flex flex-js-sb flex-ai-c' style={{"border-bottom": "1px solid #DBDBDB"}}>
                     <a className='button button-primary-bordered' onClick={close}>Отмена</a>
                     <h4>Редактирование информации</h4>
-                    <a className='button button-primary'>Готово</a>
+                    <a className='button button-primary' onClick={handleSave}>Готово</a>
                 </div>
                 <div className='flex' style={{"padding-bottom": "10px"}}>
                     <div>
@@ -49,11 +68,12 @@ export default function ModalEditPost({ close, selectedPost, closeParentModal })
                             </div>     
                                             
                         </div>                    
-                        <div className='p1'>
-                        {about && (
+                        <div className='p1'>                        
+                        {/* {about && (
                             <p>{about}</p>                            
-                        )}       
-                        {id}                                    
+                        )} */}
+                        <textarea className="textarea" placeholder='Добавьте подпись...' onChange={(e) => setAbout(e.target.value)} value={about}></textarea>                        
+                        {/* {id} */}
                         </div>                        
                     </div>                                          
                 </div>

@@ -50,10 +50,23 @@ export const getFollowers = () => async (dispatch) => {
 };
 
 export const createPost = (sendData, router) => async (dispatch) => {
-  const res = await axios.post(`${END_POINT}/api/posts`, sendData);
+  const res = await axios.post(`${END_POINT}/api/post`, sendData);
   router.push("/user-profile");
   dispatch(uppendPost({ newpost: res.data }));
 };
+
+export const editPost = (sendData, router) => async (dispatch) => {  
+  try {   
+    // console.log("Отправка данных на сервер:", sendData);
+    const res = await axios.put(`${END_POINT}/api/post`, sendData);
+    // console.log("Ответ от сервера:", res);   
+    router.push("/login");
+  } catch (e) {
+    console.log(e);
+    alert("Что-то пошло не так, сообщите об ошибке технической поддержке!");
+  }  
+}
+
 
 export const deletePost = (id) => async (dispatch) => {  
   try{      
