@@ -17,7 +17,7 @@ import ModalViewPost from '@/components/ModalViewPost';
 
 import { useDispatch, useSelector } from 'react-redux'
 // import { getMyPosts } from '@/app/store/slices/postSlice';
-import { getFollowers, getMyPosts } from '@/app/store/slices/postSlice';
+import { getFollowers, getMyPosts, getMyComments } from '@/app/store/slices/postSlice';
 // import { getFollowers, getMyPosts } from '@/app/store/slices/userProfileSlice';
 
 import ModalAddPos from '@/components/ModalAddPos'

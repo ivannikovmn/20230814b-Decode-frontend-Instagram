@@ -6,7 +6,8 @@ export const postSlice = createSlice({
   name: 'post',
   initialState: {
     posts: [],
-    followers: []
+    followers: [],
+    comment: [],
   },
   reducers: {
     setMyPosts: (state, action) => {
@@ -18,15 +19,23 @@ export const postSlice = createSlice({
     setFollowers: (state, action) => {
       state.followers = action.payload;
     },
+    setCommentData: (state, action) => {
+      state.comment = action.payload.comment;
+    },
     handleDeletePost: (state, action) => {
       let posts = [...state.posts]
       posts = posts.filter(item => item.id !== action.payload)
       state.posts = posts
     },
+    handleDeleteComment: (state, action) => {
+      let comment = [...state.comment]
+      comment = comment.filter(item => item.id !== action.payload)
+      state.comment = comment
+    },
   },
 })
 
-export const { setMyPosts, uppendPost, setFollowers, handleDeletePost } = postSlice.actions;
+export const { setMyPosts, uppendPost, setFollowers, handleDeletePost, setCommentData, handleDeleteComment } = postSlice.actions;
 
 export const getMyPosts = () => async (dispatch) => {
   try {
@@ -67,11 +76,42 @@ export const editPost = (sendData, router) => async (dispatch) => {
   }  
 }
 
-
 export const deletePost = (id) => async (dispatch) => {  
   try{      
       const res = await axios.delete(`${END_POINT}/api/post/${id}`); 
       dispatch(handleDeletePost(id))
+  }catch(e){
+    console.log(e);
+      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+  }  
+}
+
+export const createComment = (sendData, router) => async (dispatch) => {
+  const res = await axios.post(`${END_POINT}/api/comments`, sendData);
+  router.push("/login");
+  // dispatch(uppendPost({ newpost: res.data }));
+};
+
+export const getCommentById = (id) => async (dispatch) => {
+  // dispatch(setLoading()) 
+  try {    
+      // dispatch(setLoading())         
+      const res = await axios.get(`${END_POINT}/api/comments/byIdPostStory/${id}`);
+      console.log('res.data', res.data);
+      // dispatch(setComment({comment: res.data}))
+      dispatch(setCommentData({comment: res.data}));
+      // dispatch(setLoading())     
+      // dispatch(setLoadingFalse())  
+  } catch(e) {
+      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+  }
+  
+}
+
+export const deleteComment = (id) => async (dispatch) => {  
+  try{      
+      const res = await axios.delete(`${END_POINT}/api/comments/${id}`); 
+      dispatch(handleDeleteComment(id))
   }catch(e){
     console.log(e);
       alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")

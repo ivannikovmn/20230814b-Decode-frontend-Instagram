@@ -2,9 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import avatar from '../../app/images/avatar.png'
 import AddComment from '../AddComment'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Comment from '../Comment'
 import ModalEditPost from '@/components/ModalEditPost';
+import { getCommentById } from '@/app/store/slices/postSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { deleteComment } from '@/app/store/slices/postSlice'
 
 export default function ModalViewPost({ close, selectedPost }) {
     // Проверяем, есть ли выбранный пост, и устанавливаем соответствующее значение переменной about
@@ -13,6 +16,14 @@ export default function ModalViewPost({ close, selectedPost }) {
     const postImageSrc = selectedPost && selectedPost.post ? selectedPost.post : null;
 
     const [comments, setComments] = useState([])
+    // const [comment, setComment] = useState("");
+    const [commentData, setCommentData] = useState(null);
+    // const comment = commentData;
+    const comment = useSelector(state => state.post.comment);
+    console.log('comment+', comment);
+    // const comment = useSelector(state => state.post.comment)    
+
+    const dispatch = useDispatch();
 
     // console.log(postImageSrc );
 
@@ -36,7 +47,17 @@ export default function ModalViewPost({ close, selectedPost }) {
 
       const closeChildModal = () => {
         close(); 
-    }      
+    }          
+
+    const didMount = () => {
+        dispatch(getCommentById(id))
+        
+        // return () => {
+        //   dispatch(setLoadingTrue())
+        // }
+      }    
+
+    useEffect(didMount, [])
 
     return (
         <div className="modal">
@@ -74,8 +95,20 @@ export default function ModalViewPost({ close, selectedPost }) {
                     )}                                           
                         {/* Подпись <br /> */}
                         {/* {comments.map(item => (<p key={item.id}>{item.comment}</p>))} */}
-                        {comments.map(item => (<Comment key={item.id} remove={removeComment}/>))}
-                        <AddComment AddComment_={AddComment_} />                        
+                        {/* {comment} */}
+                        
+                        {comment.map((item, index) => (
+                            <div key={index}>
+                                <p>
+                                    {item.comment}
+                                    <span style={{cursor:'pointer'}} onClick={() => dispatch(deleteComment(item.id))}> (Удалить)</span>                                
+                                </p>
+                                
+                            </div>
+                        ))}
+
+                        {/* {comments.map(item => (<Comment key={item.id} remove={removeComment} selectedPost={selectedPost}/>))} */}
+                        <AddComment AddComment_={AddComment_} selectedPost={selectedPost} />                        
                     </div>
                 </div>
             </div>
