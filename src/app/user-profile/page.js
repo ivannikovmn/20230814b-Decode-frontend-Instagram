@@ -18,6 +18,7 @@ import ModalViewPost from '@/components/ModalViewPost';
 import { useDispatch, useSelector } from 'react-redux'
 // import { getMyPosts } from '@/app/store/slices/postSlice';
 import { getFollowers, getMyPosts, getMyComments } from '@/app/store/slices/postSlice';
+import { getMyStories } from '@/app/store/slices/storySlice'
 // import { getFollowers, getMyPosts } from '@/app/store/slices/userProfileSlice';
 
 import ModalAddPos from '@/components/ModalAddPos'
@@ -28,11 +29,17 @@ export default function PostPage() {
 
   const dispatch = useDispatch();
   const posts_ = useSelector((state) => state.post.posts)
+  const stories = useSelector((state) => state.story.stories);
   // console.log("here", posts_);
   const didMount = () => {
     dispatch(getMyPosts())
+    dispatch(getMyStories())         
   }
   useEffect(didMount, [])
+
+  useEffect(() => {
+    // console.log('stories in Redux state: ', stories[0].story);
+  }, [stories]);
 
   const closeFolModal = () => {
     setFolModalOpen(false)        
@@ -96,6 +103,33 @@ export default function PostPage() {
     // console.log("SelectedPost inside handleSelectPost+:", postInfo);
   }
 
+//   const storiesData = [
+//     {
+//         "id": 44,
+//         "post": "",
+//         "story": "/images/Small-Post4.png",
+//         "about": "«Врач — философ: ведь нет большой разницы между мудростью и медициной» Гиппократ+",
+//         "participants": "_kz_al,_mi.design",
+//         "createdAt": "2023-10-17T13:03:26.128Z",
+//         "updatedAt": "2023-10-17T13:03:26.128Z",
+//         "cityId": 31,
+//         "userId": 1
+//     },
+//     {
+//         "id": 45,
+//         "post": "",
+//         "story": "/images/Small-Post4.png",
+//         "about": "«Врач — философ: ведь нет большой разницы между мудростью и медициной» Гиппократ+",
+//         "participants": "_kz_al,_mi.design",
+//         "createdAt": "2023-10-17T13:56:26.622Z",
+//         "updatedAt": "2023-10-17T13:56:26.622Z",
+//         "cityId": 31,
+//         "userId": 1
+//     }
+// ];
+
+// const firstStory = storiesData[0];
+
   return (
     <main>
       <div className='container'>
@@ -118,7 +152,8 @@ export default function PostPage() {
             {/* </fix cтили в файле header.css> */} 
             <div className='flex'>
               <div>                 
-                {ModalStoryViewIsOpen && <ModalViewStory close={closeModalStoryView}/>}
+              {/* {ModalStoryViewIsOpen && <ModalViewStory story={firstStory} close={closeModalStoryView}/>} */}
+              {ModalStoryViewIsOpen && <ModalViewStory story={stories[0].story} close={closeModalStoryView}/>}
                 <a style={{cursor:'pointer'}} onClick={()=>setModalStoryViewIsOpen(true)}>
                   <Image src={addAvatar} alt="icon" />
                 </a> 

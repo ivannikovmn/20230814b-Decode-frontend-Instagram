@@ -2,7 +2,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import avatar from '../../app/images/avatar.png'
 
-export default function ModalViewStory({close}) {
+export default function ModalViewStory({close, story}) {
+    const storyImageSrc = story.story;
     return(
         <div className="modal">
             <div className="modal-backdrop" onClick={close}></div>
@@ -19,8 +20,9 @@ export default function ModalViewStory({close}) {
                         ...
                     </div>
                 </div>
-                <div className='flex p3 flex-js-c'>
-                    <img src="/images/Small-Post1.png" />
+                <div className='flex p3 flex-js-c'>                    
+                    {/* <img src="/images/Small-Post1.png" /> */}
+                    <img src={story} />
                 </div>
             </div>
 
