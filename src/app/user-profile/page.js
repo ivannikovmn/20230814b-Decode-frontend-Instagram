@@ -14,6 +14,7 @@ import Post_ from '@/components/Post';
 import Link from 'next/link'
 import ModalSelectFollowers from '@/components/ModalSelectFollowers'
 import ModalViewPost from '@/components/ModalViewPost';
+import ModalViewStory from '@/components/ModalViewStory';
 
 import { useDispatch, useSelector } from 'react-redux'
 // import { getMyPosts } from '@/app/store/slices/postSlice';
@@ -22,14 +23,15 @@ import { getMyStories } from '@/app/store/slices/storySlice'
 // import { getFollowers, getMyPosts } from '@/app/store/slices/userProfileSlice';
 
 import ModalAddPos from '@/components/ModalAddPos'
-import ModalViewStory from '@/components/ModalViewStory';
+import ModalAddStory from '@/components/ModalAddStory'
+
 export default function PostPage() {
   const [followerUser, setFollowerUser] = useState()
   const [isFolModalOpen, setFolModalOpen] = useState(false)
 
   const dispatch = useDispatch();
   const posts_ = useSelector((state) => state.post.posts)
-  const stories = useSelector((state) => state.story.stories);
+  const stories_ = useSelector((state) => state.story.stories);
   // console.log("here", posts_);
   const didMount = () => {
     dispatch(getMyPosts())
@@ -37,9 +39,9 @@ export default function PostPage() {
   }
   useEffect(didMount, [])
 
-  useEffect(() => {
-    // console.log('stories in Redux state: ', stories[0].story);
-  }, [stories]);
+  // useEffect(() => {
+  //   console.log('stories in Redux state: ', stories_[0].id);
+  // }, [stories_]);
 
   const closeFolModal = () => {
     setFolModalOpen(false)        
@@ -60,6 +62,8 @@ export default function PostPage() {
 
 
   const [ModalPosIsOpen, setmodalPosIsOpen] = useState(false)
+  const [ModalStoryIsOpen, setmodalStoryIsOpen] = useState(false)
+
   const [ModalStoryViewIsOpen, setModalStoryViewIsOpen] = useState(false)
   const [ModalPostViewIsOpen, setModalPostViewIsOpen] = useState(false)
 
@@ -69,7 +73,13 @@ export default function PostPage() {
     setmodalPosIsOpen(false)
   }  
 
+  const closeModalStory = () => {
+    setmodalStoryIsOpen(false)
+  }  
+
   const [posts, setPosts] = useState([])
+  const [stories, setStories] = useState([])
+
 
   // const posts_ = [{
   //   post: <img src="/images/Small-Post1.png" />
@@ -87,6 +97,11 @@ export default function PostPage() {
   const addPost = (item) => {
     setPosts([...posts, item])
     closeModalPos();
+  }
+
+  const addStory = (item) => {
+    setStories([...stories, item])
+    closeModalStory();
   }
 
   const removePost =(post) => {
@@ -140,9 +155,10 @@ export default function PostPage() {
          <div className='ptb7'>
 
          {ModalPosIsOpen && <ModalAddPos close={closeModalPos} addPost={addPost}/>}
+         {ModalStoryIsOpen && <ModalAddStory close={closeModalStory} addStory={addStory}/>}
           <div className='pos'>                                  
-            {/* <fix cтили в файле header.css> */}
-            <a className="header-button">
+            {/* <fix cтили в файле header.css> */}            
+            <a className="header-button" onClick={() => setmodalStoryIsOpen(true)}>
                     <Image src={storiesIcon} alt="icon"/>
             </a>             
             <a className="header-button" onClick={() => setmodalPosIsOpen(true)} >
@@ -153,7 +169,8 @@ export default function PostPage() {
             <div className='flex'>
               <div>                 
               {/* {ModalStoryViewIsOpen && <ModalViewStory story={firstStory} close={closeModalStoryView}/>} */}
-              {ModalStoryViewIsOpen && <ModalViewStory story={stories[0].story} close={closeModalStoryView}/>}
+              {stories_[0] && ModalStoryViewIsOpen && <ModalViewStory story={stories_[0].story} id={stories_[0].id} close={closeModalStoryView}/>}
+              
                 <a style={{cursor:'pointer'}} onClick={()=>setModalStoryViewIsOpen(true)}>
                   <Image src={addAvatar} alt="icon" />
                 </a> 

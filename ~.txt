@@ -44,7 +44,7 @@ pm2 start npm --name "instagram_front" -- start
 git pull
 npm run build
 pm2 restart 1
-	git config pull.ff only
+
 
 git add .
 git commit -m "initial"
@@ -129,6 +129,11 @@ git push origin main
 ---
 git add .
 git commit -m "fix view story (db)"
+git push origin main
+---
+git add .
+git commit -m "create/delete story as ModalAddPos, ModalEditPost" 
+git push origin main
 
 ---l1
 1. Создайте новый проект insta_frontend + 
@@ -170,7 +175,7 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 2. Возможность открыть любой пост и оставить комментарий.+
 3. Возможность удалить комментарий. +
 ---l12
-	1. Добавление/Удаление и Вывод+ сторисов.//первый сторис
+1. Добавление+/Удаление и Вывод сторисов.//первый сторис stories_[0].story +
 	2. Добавление и удаление лайков.
 ---l13
 1. Возможность открывать профиль другого человека
