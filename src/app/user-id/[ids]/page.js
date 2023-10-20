@@ -7,7 +7,7 @@ import MyPosts from '@/components/myposts'
 import postsIcon from '@/app/images/posts.svg'
 import newPostsIcon from '@/app/images/newposts.svg'
 import storiesIcon from '@/app/images/stories.svg'
-import addAvatar from '../../../public/images/Profile-Pic.png'
+import addAvatar from '../../../../public/images/Profile-Pic.png'
 import Image from 'next/image'
 // Post_ это то чно отображается post_
 import Post_ from '@/components/Post';
@@ -24,6 +24,7 @@ import { getMyStories } from '@/app/store/slices/storySlice'
 
 import ModalAddPos from '@/components/ModalAddPos'
 import ModalAddStory from '@/components/ModalAddStory'
+import { useParams } from 'next/navigation';
 
 export default function PostPage() {
   const [followerUser, setFollowerUser] = useState()
@@ -147,8 +148,9 @@ export default function PostPage() {
 const email = useSelector((state) => state.auth.email); // Используйте правильный путь к email в вашем состоянии Redux
 const id = useSelector((state) => state.auth.id);
 
-const filteredPosts = posts_.filter(post => post.userId === parseInt(id)); // Преобразовать `ids` в число, если оно не было
-
+const {ids} = useParams()
+console.log('ids', ids);
+const filteredPosts = posts_.filter(post => post.userId === parseInt(ids)); // Преобразовать `ids` в число, если оно не было
 
   return (
     <main>
@@ -159,21 +161,17 @@ const filteredPosts = posts_.filter(post => post.userId === parseInt(id)); // П
 
          <div className='ptb7'>
 
-         {ModalPosIsOpen && <ModalAddPos close={closeModalPos} addPost={addPost}/>}
-         {ModalStoryIsOpen && <ModalAddStory close={closeModalStory} addStory={addStory}/>}
-          <div className='pos'>                                  
-            {/* <fix cтили в файле header.css> */}            
-            <a className="header-button" onClick={() => setmodalStoryIsOpen(true)}>
+         {/* {ModalPosIsOpen && <ModalAddPos close={closeModalPos} addPost={addPost}/>}
+         {ModalStoryIsOpen && <ModalAddStory close={closeModalStory} addStory={addStory}/>} */}
+          <div className='pos'>                                                        
+            {/* <a className="header-button" onClick={() => setmodalStoryIsOpen(true)}>
                     <Image src={storiesIcon} alt="icon"/>
             </a>             
             <a className="header-button" onClick={() => setmodalPosIsOpen(true)} >
                     <Image src={newPostsIcon} alt="icon" />
-            </a>              
-            {/* <Link className="button button-primary" href="/create-post">Создать пост</Link> */}
-            {/* </fix cтили в файле header.css> */} 
+            </a>               */}
             <div className='flex'>
-              <div>                 
-              {/* {ModalStoryViewIsOpen && <ModalViewStory story={firstStory} close={closeModalStoryView}/>} */}
+              <div>                               
               {stories_[0] && ModalStoryViewIsOpen && <ModalViewStory story={stories_[0].story} id={stories_[0].id} close={closeModalStoryView}/>}
               
                 <a style={{cursor:'pointer'}} onClick={()=>setModalStoryViewIsOpen(true)}>
@@ -181,13 +179,15 @@ const filteredPosts = posts_.filter(post => post.userId === parseInt(id)); // П
                 </a> 
               </div>
               <div>
-                  <h1>
+                  <h3>
                     {/* terrylucas  */}
                     <Link style={{textDecoration:'none', color: '#000' }} href={`/user-id/${id}`}>{email}</Link>
-                  </h1>
-                  {/* {email} */}
-                 
-                  
+          
+                  </h3>   
+                  <div style={{paddingBottom:'20px'}}>
+                  <button className="button button-primary-bordered">Подписаться</button>  
+                  </div>
+
                   <div className='flex-js-sb'>
                     <a>1258 публикаций </a> 
                     <a className="link" onClick={() => setFolModalOpen(true)}>4M подписчиков </a>                  

@@ -134,6 +134,10 @@ git push origin main
 git add .
 git commit -m "create/delete story as ModalAddPos, ModalEditPost" 
 git push origin main
+---
+git add .
+git commit -m "fix like, fix user-profile, add React l-10 p1-p2(open other user profile [user-id/[ids])" 
+git push origin main
 
 ---l1
 1. Создайте новый проект insta_frontend + 
@@ -175,10 +179,10 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 2. Возможность открыть любой пост и оставить комментарий.+
 3. Возможность удалить комментарий. +
 ---l12
-1. Добавление+/Удаление и Вывод сторисов.//первый сторис stories_[0].story +
-	2. Добавление и удаление лайков.
+1. Добавление/Удаление и Вывод сторисов.//первый сторис stories_[0].story +
+2. Добавление и удаление лайков.
 ---l13
-1. Возможность открывать профиль другого человека
+1. Возможность открывать профиль другого человека +
 2. Возможность подписаться на человека в его профиле
 3. Возможность отписаться от человека в его профиле
 ---l14

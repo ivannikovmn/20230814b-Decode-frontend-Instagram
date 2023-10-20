@@ -10,6 +10,7 @@ let initialState = {
   tokenExt: 0  
 }
 
+
 // const token = localStorage.getItem("token")
 // // console.log(token);
 // if(token) {
@@ -57,12 +58,18 @@ export const authSlice = createSlice({
       state.currentUser = null;
       state.exp = 0;
       localStorage.removeItem("token")
+    },
+    setEmail: (state, action) => {
+      state.email = action.payload;
+    },
+    setId: (state, action) => {
+      state.id = action.payload;
     }
   },
 }) 
 
 // Action creators are generated for each case reducer function
-export const { authorize, logOut } = authSlice.actions
+export const { authorize, logOut, setEmail, setId } = authSlice.actions
 
 export const sendVerificationEmail = (email) => (dispatch) => {
   

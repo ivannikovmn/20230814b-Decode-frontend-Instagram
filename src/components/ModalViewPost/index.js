@@ -1,6 +1,7 @@
 import Image from 'next/image'
-import Link from 'next/link'
+import likeIcon from '../../app/images/like.png'
 import avatar from '../../app/images/avatar.png'
+import Link from 'next/link'
 import AddComment from '../AddComment'
 import { useEffect, useState } from 'react'
 import Comment from '../Comment'
@@ -96,7 +97,11 @@ export default function ModalViewPost({ close, selectedPost }) {
                         {/* Подпись <br /> */}
                         {/* {comments.map(item => (<p key={item.id}>{item.comment}</p>))} */}
                         {/* {comment} */}
+                        <Link href="#">
+                        <Image src={likeIcon} alt="icon"/>
+                        </Link>
                         
+
                         {comment.map((item, index) => (
                             <div key={index}>
                                 <p>

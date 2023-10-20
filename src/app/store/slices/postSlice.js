@@ -37,9 +37,9 @@ export const postSlice = createSlice({
 
 export const { setMyPosts, uppendPost, setFollowers, handleDeletePost, setCommentData, handleDeleteComment } = postSlice.actions;
 
-export const getMyPosts = () => async (dispatch) => {
+export const getPosts = () => async (dispatch) => {
   try {
-    const res = await axios.get(`${END_POINT}/api/posts/my`);
+    const res = await axios.get(`${END_POINT}/api/posts`);
     dispatch(setMyPosts({ posts: res.data }));
   } catch (e) {
     alert("Что-то пошло не так, сообщите об ошибке 1 тех спецам сайта!");
