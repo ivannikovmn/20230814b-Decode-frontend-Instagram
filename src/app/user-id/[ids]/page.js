@@ -28,8 +28,10 @@ import ModalAddStory from '@/components/ModalAddStory'
 import { useParams } from 'next/navigation';
 
 import { getUserById } from '@/app/store/slices/userSlice'
+import { createFollower, deleteFollower } from '@/app/store/slices/followerSlice'
 
 export default function PostPage() {
+  
   const user = useSelector(state => state.user.user)
   const [followerUser, setFollowerUser] = useState()
   const [isFolModalOpen, setFolModalOpen] = useState(false)
@@ -194,6 +196,19 @@ const filteredPosts = posts_.filter(post => post.userId === parseInt(ids)); // �
 //   }
 // }, [user]);
 
+let isFollowed = true;
+if (ids*1 === id*1) isFollowed = false;
+
+const handleFollower = () => {
+  dispatch(createFollower({
+    userid: ids,
+    followerUserId: id
+  }))
+  alert ("Подписка успешно осуществлена") //temp
+}
+
+
+
   return (
     <main>
       <div className='container'>
@@ -232,12 +247,15 @@ const filteredPosts = posts_.filter(post => post.userId === parseInt(ids)); // �
                     ))}                 
           
                   <div style={{paddingBottom:'20px'}}>
-                  <button className="button button-primary-bordered">Подписаться</button>  
+                  {isFollowed && <button className="button button-primary-bordered" onClick={handleFollower}>Подписаться</button>}
+                  <br></br>
+                  {isFollowed && <button className="button button-primary-bordered" onClick={() => dispatch(deleteFollower(ids))}>Отписаться..</button>}
                   </div>
 
                   <div className='flex-js-sb'>
                     <a>1258 публикаций </a> 
                     <a className="link" onClick={() => setFolModalOpen(true)}>4M подписчиков </a>                  
+                    {isFolModalOpen && <ModalSelectFollowers close={closeFolModal} onChange={fol => setFollowerUser(fol)}/>}
                     {isFolModalOpen && <ModalSelectFollowers close={closeFolModal} onChange={fol => setFollowerUser(fol)}/>}
                     <a>1250 подписок</a>
                   </div>
