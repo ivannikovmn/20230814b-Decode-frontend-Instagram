@@ -46,6 +46,9 @@ npm run build
 pm2 restart 1
 
 
+Termnal vsc(bash) (Git)
+git init 
+	.gitignore node_modules 
 git add .
 git commit -m "initial"
 git remote add origin https://github.com/ivannikovmn/20230814b-Decode-frontend-Instagram
@@ -138,6 +141,12 @@ git push origin main
 git add .
 git commit -m "fix like, fix user-profile, add React l-10 p1-p2(open other user profile [user-id/[ids])" 
 git push origin main
+---
+git add .
+git commit -m "fix end-point localhost:8000, fix useEffect" 
+git push origin main
+---
+
 
 ---l1
 1. Создайте новый проект insta_frontend + 
@@ -183,8 +192,8 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 2. Добавление и удаление лайков.
 ---l13
 1. Возможность открывать профиль другого человека +
-2. Возможность подписаться на человека в его профиле
-3. Возможность отписаться от человека в его профиле
+	2. Возможность подписаться на человека в его профиле
+	3. Возможность отписаться от человека в его профиле
 ---l14
 1. На странице профиля возможность открыть модальное окна со списком подписчиков данного профиля
 2. На странице профиля возможность открыть модальное окна со списком тех на кого подписан данный профиль

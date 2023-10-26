@@ -7,7 +7,11 @@ import { END_POINT } from '@/config/end-point'
 let initialState = {
   isAuth: false,
   currentUser: null,
-  tokenExt: 0  
+  tokenExt: 0, 
+  // user: {
+  //   email: null,
+  //   // другие свойства, которые вы хотите добавить
+  // },
 }
 
 
@@ -64,11 +68,15 @@ export const authSlice = createSlice({
     },
     setId: (state, action) => {
       state.id = action.payload;
-    }
+    },    
+    // setUserData: (state, action) => {
+    //   state.user = action.payload.user;
+    // },
   },
 }) 
 
 // Action creators are generated for each case reducer function
+// export const { authorize, logOut, setEmail, setId, setUserData } = authSlice.actions
 export const { authorize, logOut, setEmail, setId } = authSlice.actions
 
 export const sendVerificationEmail = (email) => (dispatch) => {
@@ -91,5 +99,18 @@ export const verifyCode = (email, code) => (dispatch) => {
 
   })
 }
+
+// export const getUserById = (id) => async (dispatch) => {
+//   try {
+//     const res = await axios.get(`${END_POINT}/api/auth/users/byUsername/${id}`);
+//     console.log(res.data); // Вывод данных в консоль
+//     dispatch(setUserData({ user: res.data }));
+//   } catch (e) {
+//     console.error("Ошибка при загрузке данных пользователя:", e);
+//     alert("Что-то пошло не так, сообщите об ошибке техническим специалистам сайта!");
+//   }
+// }
+
+
 
 export default authSlice.reducer

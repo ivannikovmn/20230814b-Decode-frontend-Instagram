@@ -33,11 +33,20 @@ export default function PostPage() {
   const posts_ = useSelector((state) => state.post.posts)
   const stories_ = useSelector((state) => state.story.stories);
   // console.log("here", posts_);
-  const didMount = () => {
+  // const didMount = () => {
+  //   dispatch(getPosts())
+  //   dispatch(getMyStories())    
+  //   return () => {
+  //     // dispatch(setLoadingTrue())
+  //     console.log('ok');
+  //   } 
+  // }
+  // useEffect(didMount, [])
+
+  useEffect(() => {
     dispatch(getPosts())
-    dispatch(getMyStories())         
-  }
-  useEffect(didMount, [])
+    dispatch(getMyStories()) 
+  }, [])
 
   // useEffect(() => {
   //   console.log('stories in Redux state: ', stories_[0].id);

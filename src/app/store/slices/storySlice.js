@@ -30,7 +30,7 @@ export const getMyStories = () => async (dispatch) => {
     try {
       const res = await axios.get(`${END_POINT}/api/resumesBefore24hours`);
       dispatch(setMyStories({ stories: res.data }));
-      console.log('dispatch(setMyStories({ stories: res.data }));', dispatch(setMyStories({ stories: res.data })));
+      // console.log('dispatch(setMyStories({ stories: res.data }));', dispatch(setMyStories({ stories: res.data })));
     } catch (e) {
       alert("Что-то пошло не так, сообщите об ошибке 1 тех спецам сайта!");
     }

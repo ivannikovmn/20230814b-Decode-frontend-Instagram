@@ -19,6 +19,7 @@ import ModalViewStory from '@/components/ModalViewStory';
 import { useDispatch, useSelector } from 'react-redux'
 // import { getMyPosts } from '@/app/store/slices/postSlice';
 import { getFollowers, getPosts, getMyComments } from '@/app/store/slices/postSlice';
+// import { getUserById } from '@/app/store/slices/authSlice'
 import { getMyStories } from '@/app/store/slices/storySlice'
 // import { getFollowers, getMyPosts } from '@/app/store/slices/userProfileSlice';
 
@@ -26,7 +27,10 @@ import ModalAddPos from '@/components/ModalAddPos'
 import ModalAddStory from '@/components/ModalAddStory'
 import { useParams } from 'next/navigation';
 
+import { getUserById } from '@/app/store/slices/userSlice'
+
 export default function PostPage() {
+  const user = useSelector(state => state.user.user)
   const [followerUser, setFollowerUser] = useState()
   const [isFolModalOpen, setFolModalOpen] = useState(false)
 
@@ -34,11 +38,30 @@ export default function PostPage() {
   const posts_ = useSelector((state) => state.post.posts)
   const stories_ = useSelector((state) => state.story.stories);
   // console.log("here", posts_);
-  const didMount = () => {
+  // const didMount = async () => {
+  //   dispatch(getUserById(ids)) 
+
+  //   dispatch(getPosts())
+  //   dispatch(getMyStories()) 
+  //   dispatch(getFollowers())  
+  //   return () => {
+  //     // dispatch(setLoadingTrue())
+  //     console.log('ok');
+  //   } 
+  // }
+  // useEffect(didMount, [])
+
+  useEffect(() => {
+    dispatch(getUserById(ids)) 
+
     dispatch(getPosts())
-    dispatch(getMyStories())         
-  }
-  useEffect(didMount, [])
+    dispatch(getMyStories()) 
+    dispatch(getFollowers())
+  }, [])
+
+  console.log("in page", user);
+
+
 
   // useEffect(() => {
   //   console.log('stories in Redux state: ', stories_[0].id);
@@ -58,7 +81,7 @@ export default function PostPage() {
 
   useEffect(() => {
     dispatch(getFollowers())
-    console.log('dispatch(getFollowers())', dispatch(getFollowers()));
+    // console.log('dispatch(getFollowers())', dispatch(getFollowers()));
 }, [])
 
 
@@ -145,12 +168,31 @@ export default function PostPage() {
 // ];
 
 // const firstStory = storiesData[0];
-const email = useSelector((state) => state.auth.email); // Используйте правильный путь к email в вашем состоянии Redux
+// const email = useSelector((state) => state.auth.email); // Используйте правильный путь к email в вашем состоянии Redux
+// console.log(email);
 const id = useSelector((state) => state.auth.id);
+// const email = user[0].email;
+// console.log(email);
 
 const {ids} = useParams()
-console.log('ids', ids);
+// console.log('ids', ids);
+// const filteredMail = posts_.filter(post => post.userId === parseInt(ids)); // Преобразовать `ids` в число, если оно не было
 const filteredPosts = posts_.filter(post => post.userId === parseInt(ids)); // Преобразовать `ids` в число, если оно не было
+
+// const [user, setUser] = useState();
+// const [email, setEmail] = useState(''); // Создайте состояние для email
+
+// useEffect(() => {
+//   const userData = dispatch(getUserById(ids));
+//   setUser(userData);
+// }, []);
+
+// useEffect(() => {
+//   if (user && user.length > 0) {
+//       const userEmail = user[0].email;
+//       setEmail(userEmail);
+//   }
+// }, [user]);
 
   return (
     <main>
@@ -178,12 +220,17 @@ const filteredPosts = posts_.filter(post => post.userId === parseInt(ids)); // �
                   <Image src={addAvatar} alt="icon" />
                 </a> 
               </div>
-              <div>
-                  <h3>
+              <div>                  
                     {/* terrylucas  */}
-                    <Link style={{textDecoration:'none', color: '#000' }} href={`/user-id/${id}`}>{email}</Link>
+                    
+                    {user.map((user) => (
+                      // <h3 key={user.id}>{user.email}</h3>
+                      <h3 key={user.id}>
+                        <Link style={{textDecoration:'none', color: '#000' }} href={`/user-id/${ids}`}>{user.email}</Link>
+                      </h3>
+                      
+                    ))}                 
           
-                  </h3>   
                   <div style={{paddingBottom:'20px'}}>
                   <button className="button button-primary-bordered">Подписаться</button>  
                   </div>
