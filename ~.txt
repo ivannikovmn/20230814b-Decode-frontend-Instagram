@@ -44,7 +44,8 @@ pm2 start npm --name "instagram_front" -- start
 git pull
 npm run build
 pm2 restart 1
-
+-
+npm run dev
 
 Termnal vsc(bash) (Git)
 git init 
@@ -153,7 +154,10 @@ git push origin main
 git add .
 git commit -m "fix user-profile, test as /followed/byUsername/1 add React l-12 (ModalSelectFollowed as ModalSelectSpec)"
 git push origin main
-
+---
+git add .
+git commit -m "get suggestions, add follower suggestion, add link for logo"
+git push origin main
 
 ---l1
 1. Создайте новый проект insta_frontend + 
@@ -199,8 +203,8 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 2. Добавление и удаление лайков.
 ---l13
 1. Возможность открывать профиль другого человека +
-2. Возможность подписаться на человека в его профиле // добавиться как подписчик +
-3. Возможность отписаться от человека в его профиле // удалиться как подписчик.. +
+2. Возможность подписаться на человека в его профиле // добавится как подписчик +
+3. Возможность отписаться от человека в его профиле // удалится как подписчик.. +
 ---l14
 1. На странице профиля возможность открыть модальное окна со списком подписчиков данного профиля // eсли /api/followers/byUsername/1 ,  userid = 1 +
 2. На странице профиля возможность открыть модальное окна со списком тех на кого подписан данный профиль // eсли /api/followed/byUsername/1,  userid = 1 +
@@ -208,8 +212,8 @@ https://www.figma.com/file/cspOVuyzQj7F0LjVOfAAiT/InstagramDesign?type=design&no
 4. Сделать фильтрацию на уровне фронта по списку в обоих модальных окнах 
 ---l15
 1. Настроить ProtectedRoutes на всех страницах где это необходимо
-2. Вывод Suggestions For You на странице со списком постов. 
-3. Возможность подписаться под тех кто в списке Suggestions 
+2. Вывод Suggestions For You на странице со списком постов. +
+3. Возможность подписаться под тех кто в списке Suggestions +
 ---l16
 1. Загрузить проект на VPS +
 2. Если есть домен связать его с VPS

@@ -9,6 +9,7 @@ export const postSlice = createSlice({
     followers: [],
     followed: [],
     comment: [],
+    suggestions: [],
   },
   reducers: {
     setMyPosts: (state, action) => {
@@ -22,6 +23,9 @@ export const postSlice = createSlice({
     },
     setFollowed: (state, action) => {
       state.followed = action.payload;
+    },
+    setSuggestions: (state, action) => {
+      state.suggestions = action.payload;
     },
     setCommentData: (state, action) => {
       state.comment = action.payload.comment;
@@ -39,7 +43,7 @@ export const postSlice = createSlice({
   },
 })
 
-export const { setMyPosts, uppendPost, setFollowers, setFollowed, handleDeletePost, setCommentData, handleDeleteComment } = postSlice.actions;
+export const { setMyPosts, uppendPost, setFollowers, setFollowed, setSuggestions, handleDeletePost, setCommentData, handleDeleteComment } = postSlice.actions;
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -67,6 +71,19 @@ export const getFollowed = () => async (dispatch) => {
     const res = await axios.get(`${END_POINT}/api/followed/byUsername/1`);
     const data = res.data;
     dispatch(setFollowed(data));
+    return data;
+  } catch (error) {
+    alert("Что-то пошло не так, сообщите об ошибке 2 тех спецам сайта!");
+    throw error;
+  }
+};
+
+export const getSuggestions = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${END_POINT}/api/suggestions/1`);
+    const data = res.data;
+    dispatch(setSuggestions(data));
+    console.log('data', data);
     return data;
   } catch (error) {
     alert("Что-то пошло не так, сообщите об ошибке 2 тех спецам сайта!");

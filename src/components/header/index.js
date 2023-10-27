@@ -24,7 +24,10 @@ export default function Header () {
             <div className="container">
                 <div className="header-inner">
                     <div>
-                        <img src="/images/logo.svg" />
+                    {/* <img src="/images/logo.svg" /> */}
+                        <Link href="/" >
+                            <img style={{height:'30px'}} src="/images/logo.svg" />
+                        </Link>
                         {/* <Image src="/images/logo.svg" alt="Логотип" /> */}
                     </div>
                     <div>
