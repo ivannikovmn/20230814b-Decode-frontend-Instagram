@@ -13,6 +13,7 @@ import Image from 'next/image'
 import Post_ from '@/components/Post';
 import Link from 'next/link'
 import ModalSelectFollowers from '@/components/ModalSelectFollowers'
+import ModalSelectFollowed from '@/components/ModalSelectFollowed'
 import ModalViewPost from '@/components/ModalViewPost';
 import ModalViewStory from '@/components/ModalViewStory';
 
@@ -27,7 +28,9 @@ import ModalAddStory from '@/components/ModalAddStory'
 
 export default function PostPage() {
   const [followerUser, setFollowerUser] = useState()
+  const [followUser, setFollowUser] = useState()
   const [isFolModalOpen, setFolModalOpen] = useState(false)
+  const [isFol2ModalOpen, setFol2ModalOpen] = useState(false)
 
   const dispatch = useDispatch();
   const posts_ = useSelector((state) => state.post.posts)
@@ -54,6 +57,10 @@ export default function PostPage() {
 
   const closeFolModal = () => {
     setFolModalOpen(false)        
+  }
+
+  const closeFol2Modal = () => {
+    setFol2ModalOpen(false)        
   }
 
   const closeModalStoryView = () => {
@@ -198,10 +205,11 @@ const filteredPosts = posts_.filter(post => post.userId === parseInt(id)); // П
                  
                   
                   <div className='flex-js-sb'>
-                    <a>1258 публикаций </a> 
-                    <a className="link" onClick={() => setFolModalOpen(true)}>4M подписчиков </a>                  
+                  <a><b>1258</b> публикаций </a> 
+                    <a className="link" onClick={() => setFolModalOpen(true)}><b>4M</b> подписчиков </a>                  
                     {isFolModalOpen && <ModalSelectFollowers close={closeFolModal} onChange={fol => setFollowerUser(fol)}/>}
-                    <a>1250 подписок</a>
+                    <a className="link" onClick={() => setFol2ModalOpen(true)}><b>1250</b> подписок</a>
+                    {isFol2ModalOpen && <ModalSelectFollowed close={closeFol2Modal} onChange={fol2 => setFollowUser(fol2)}/>}                    
                   </div>
                   
               </div>

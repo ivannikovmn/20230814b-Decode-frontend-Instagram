@@ -39,7 +39,7 @@ export const createFollower = (data) => (dispatch) => {
   export const deleteFollower = (id) => (dispatch) => {
     axios.delete(`${END_POINT}/api/followers/${id}`).then(res => {   
       dispatch(removeFollower(id))      
-      alert ("Отписка успешно осуществлена")
+      alert ("Как подписчик успешно удален")
     }).catch(e => {  
       console.log(e);
     })

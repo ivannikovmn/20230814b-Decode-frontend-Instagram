@@ -7,6 +7,7 @@ export const postSlice = createSlice({
   initialState: {
     posts: [],
     followers: [],
+    followed: [],
     comment: [],
   },
   reducers: {
@@ -18,6 +19,9 @@ export const postSlice = createSlice({
     },
     setFollowers: (state, action) => {
       state.followers = action.payload;
+    },
+    setFollowed: (state, action) => {
+      state.followed = action.payload;
     },
     setCommentData: (state, action) => {
       state.comment = action.payload.comment;
@@ -35,7 +39,7 @@ export const postSlice = createSlice({
   },
 })
 
-export const { setMyPosts, uppendPost, setFollowers, handleDeletePost, setCommentData, handleDeleteComment } = postSlice.actions;
+export const { setMyPosts, uppendPost, setFollowers, setFollowed, handleDeletePost, setCommentData, handleDeleteComment } = postSlice.actions;
 
 export const getPosts = () => async (dispatch) => {
   try {
@@ -51,6 +55,18 @@ export const getFollowers = () => async (dispatch) => {
     const res = await axios.get(`${END_POINT}/api/followers/byUsername/1`);
     const data = res.data;
     dispatch(setFollowers(data));
+    return data;
+  } catch (error) {
+    alert("Что-то пошло не так, сообщите об ошибке 2 тех спецам сайта!");
+    throw error;
+  }
+};
+
+export const getFollowed = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`${END_POINT}/api/followed/byUsername/1`);
+    const data = res.data;
+    dispatch(setFollowed(data));
     return data;
   } catch (error) {
     alert("Что-то пошло не так, сообщите об ошибке 2 тех спецам сайта!");
